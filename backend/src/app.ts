@@ -2,8 +2,12 @@ import express, { Application } from "express";
 import cors from "cors";
 import cookieParser from "cookie-parser";
 
+import applicationRoutes from "./routes/application.routes";
 import authRoutes from "./routes/auth.routes";
-import resumeRoutes from "./routes/resumeRoutes";
+import jobRoutes from "./routes/job.routes";
+import profileRoutes from "./routes/profile.routes";
+import resumeRoutes from "./routes/resume.routes";
+import resumeVersionRoutes from "./routes/resumeVersion.routes";
 import { errorHandler } from "./middleware/error.middleware";
 
 const app: Application = express();
@@ -49,6 +53,10 @@ app.get("/api/test", (_req, res) => {
 
 app.use("/api/resume", resumeRoutes);
 app.use("/api/auth", authRoutes);
+app.use("/api/profile", profileRoutes);
+app.use("/api/jobs", jobRoutes);
+app.use("/api/applications", applicationRoutes);
+app.use("/api/resume-versions", resumeVersionRoutes);
 
 /*
 |--------------------------------------------------------------------------
