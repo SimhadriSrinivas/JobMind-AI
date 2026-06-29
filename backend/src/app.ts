@@ -2,6 +2,7 @@ import express, { Application } from "express";
 import cors from "cors";
 import cookieParser from "cookie-parser";
 
+import authRoutes from "./routes/auth.routes";
 import resumeRoutes from "./routes/resumeRoutes";
 import { errorHandler } from "./middleware/error.middleware";
 
@@ -47,6 +48,7 @@ app.get("/api/test", (_req, res) => {
 });
 
 app.use("/api/resume", resumeRoutes);
+app.use("/api/auth", authRoutes);
 
 /*
 |--------------------------------------------------------------------------

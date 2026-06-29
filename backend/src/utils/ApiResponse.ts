@@ -1,13 +1,13 @@
-import mongoose from "mongoose";
+export class ApiResponse<T = unknown> {
+  public statusCode: number;
+  public data: T;
+  public message: string;
+  public success: boolean;
 
-export const connectDatabase = async (): Promise<void> => {
-  const mongoUri = process.env.MONGODB_URI;
-
-  if (!mongoUri) {
-    throw new Error("MONGODB_URI is missing in .env");
+  constructor(statusCode: number, data: T, message = "Success") {
+    this.statusCode = statusCode;
+    this.data = data;
+    this.message = message;
+    this.success = statusCode < 400;
   }
-
-  await mongoose.connect(mongoUri);
-
-  console.log("🟢 MongoDB Connected");
-};
+}
